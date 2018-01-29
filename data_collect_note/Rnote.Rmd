@@ -707,3 +707,25 @@ is.ascii(vac)
 
 
 ## 9. 网络抓取
+### 9.1 数据检索的场景
+
+默认加载以下包。
+```{r eval=FALSE,warning=FALSE}
+library(RCurl)
+library(XML)
+library(stringr)
+```
+
+#### 9.1.1 下载现成文件
+
+```{r eval=FALSE,warning=FALSE}
+url <- "http://www.elections.state.md.us/elections/2012/election_data/index.html"
+## getHTMLLink获取url中的所有URL和外部文件名
+links <- getHTMLLinks(url)
+filenames <- links[str_detect(links,"_General.csv")]
+
+filenames_list <-as.list(filenames)
+filenames_list[1:3]
+```
+
+
